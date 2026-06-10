@@ -46,20 +46,6 @@ void push_back(int val){
     }
 }
 
-void insert(int val, int pos){
-    Node* newNode=new Node(val);
-    Node* temp=head;
-    for(int i=0;i<pos-1;i++){
-        if(temp==NULL){
-            cout<<"position is Invalid\n";
-            return;
-        }
-        temp=temp->next;
-    }
-    newNode->next=temp->next;
-    temp->next=newNode;
-}
-
 void printList(){
     Node* temp=head;
     while(temp!=NULL){
@@ -68,6 +54,25 @@ void printList(){
     }
     cout<<"NULL "<<endl;
 }
+
+//reverse LL
+
+void reverse(){
+    Node* curr=head;
+    Node* prev=NULL;
+    while(curr!=NULL){
+        Node* next=curr->next;
+        curr->next=prev;
+
+        //updating for next itr
+        prev=curr;
+        curr=next;
+
+    }
+    head=prev;
+}
+
+
 };
 
 int main(){
@@ -77,12 +82,13 @@ ll.push_front(2);
 ll.push_front(1);
 ll.printList(); //1->2->3
 
-
-ll.insert(10,3);
-ll.printList();
 ll.push_back(4);
 ll.push_back(5);
 ll.printList(); //1->2->3->4->5
+
+ll.reverse();
+ll.printList(); //5->4->3->2->1
+
 
     return 0;
 }
