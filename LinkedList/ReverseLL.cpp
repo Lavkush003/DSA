@@ -71,7 +71,31 @@ void reverse(){
     }
     head=prev;
 }
+int getSize(){
+    int sz=0;
+    Node* temp=head;
 
+    while(temp!=NULL){
+        temp=temp->next;
+        sz++;
+    }
+    return sz;
+}
+
+// Find and Remove Nth node from End of LinkedList
+
+void removeNth(int n){
+    int size=getSize();
+    Node* prev=head;
+    for(int i=1;i<(size-n);i++){
+        prev=prev->next;
+
+    }
+    Node* toDel=prev->next;
+    cout<<"going to delete : "<<toDel->data<<endl;
+
+    prev->next=prev->next->next;
+}
 
 };
 
@@ -86,9 +110,11 @@ ll.push_back(4);
 ll.push_back(5);
 ll.printList(); //1->2->3->4->5
 
-ll.reverse();
-ll.printList(); //5->4->3->2->1
+//ll.reverse();
+//ll.printList(); //5->4->3->2->1
 
+ll.removeNth(2);
+ll.printList();
 
     return 0;
 }
