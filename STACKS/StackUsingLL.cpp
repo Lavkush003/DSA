@@ -1,51 +1,124 @@
-//Stack Implementation Using LinkedList
+// //Stack Implementation Using LinkedList
+
+// #include<iostream>
+// #include<vector>
+// #include<string>
+// #include<list>
+
+// using namespace std;
+
+// template<class T>
+// //creating stack using linked list
+// class Stack{
+//     list<T> ll;
+
+// public:
+//     void push(T val){
+//     ll.push_front(val);
+
+// }
+//    void pop(){
+//     ll.pop_front();
+//    }
+
+//    T top(){
+//     return ll.front();
+
+//    }
+
+//    bool isEmpty(){
+//     return ll.size()==0;
+//    }
+
+
+// };
+
+// int main(){
+//   Stack<int> s;
+//   s.push(3);
+//   s.push(2);
+//   s.push(1);
+//   while(!s.isEmpty()){
+//     cout<<s.top()<<" "; //1,2,3
+//     s.pop();
+
+//   }
+//   cout<<endl;
+
+//     return 0;
+// }
+
+
 
 #include<iostream>
 #include<vector>
 #include<string>
-#include<list>
-
 using namespace std;
 
 template<class T>
-//creating stack using linked list
-class Stack{
-    list<T> ll;
+class Node {
+    public:
+        T data;
+        Node* next;
 
-public:
-    void push(T val){
-    ll.push_front(val);
+        Node(T val){
+            data=val;
+            next=NULL;
+        }
+};
 
-}
-   void pop(){
-    ll.pop_front();
-   }
+template<class T>
+class Stack {
+    Node<T>* head;
 
-   T top(){
-    return ll.front();
+    public:
+         Stack(){
+            head=NULL;
+         }
 
-   }
+         void push(T val){
+            //push-front
+            Node<T>* newNode=new Node<T>(val);
+            if(head==NULL){
+                head=newNode;
+            }else{
+                newNode->next=head;
+                head=newNode;
+            }
+         }
 
-   bool isEmpty(){
-    return ll.size()==0;
-   }
+         void pop(){
+            //pop-front
+            Node<T>* temp=head;
+            head=head->next;
+            temp->next=NULL;
+            delete temp;
+         }
 
+         T top(){
+            return head->data;
+
+         }
+
+         bool isEmpty(){
+            return head==NULL;
+         }
 
 };
 
 int main(){
-  Stack<int> s;
-  s.push(3);
-  s.push(2);
-  s.push(1);
-  while(!s.isEmpty()){
-    cout<<s.top()<<" "; //1,2,3
-    s.pop();
+    Stack<int> s;
+    s.push(3);
+    s.push(2);
+    s.push(1);
 
-  }
-  cout<<endl;
+    while(!s.isEmpty()){
+        cout<<s.top()<<" "; //1, 2, 3
+        s.pop();
+
+    }
+    cout<<endl;
+
 
     return 0;
 }
-
-
