@@ -33,10 +33,16 @@ class Stack{
 
 
 int main(){
-  Stack<int> s;
-  s.push(3);
-  s.push(2);
-  s.push(1);
+//   Stack<int> s;
+//   s.push(3);
+//   s.push(2);
+//   s.push(1);
+
+//char 
+Stack<char>s;
+s.push('c');
+s.push('b');
+s.push('a');
 
   while(!s.isEmpty()){
     cout<<s.top()<<" ";
