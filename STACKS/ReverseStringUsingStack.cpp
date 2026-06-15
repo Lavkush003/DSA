@@ -2,14 +2,14 @@
 #include<stack>
 using namespace std;
 
-void pushAtButtom(stack<int>s, int val){
+void pushAtBottom(stack<int> &s, int val){
     if(s.empty()){
         s.push(val);
         return;
     }
     int temp=s.top();
     s.pop();
-    pushAtButtom(s, val);
+    pushAtBottom(s, val);
     s.push(temp);
 
 
@@ -34,9 +34,39 @@ string reverseString(string str){ //O(N)
     return ans;
 }
 
+
+//reverse a stack
+
+void reverse(stack<int> &s){
+    if(s.empty()){
+        return;
+    }
+    int temp=s.top();
+    s.pop();
+    reverse(s);
+    pushAtBottom(s,temp);
+
+}
+void printStack(stack<int> s){
+    while(!s.empty()){
+        cout<<s.top()<<" ";
+        s.pop();
+    }
+    cout<<"\n";
+}
+
 int main(){
 string str="abcd";
-cout<<"reverse = "<<reverseString(str)<<endl;
+ cout<<"reverse = "<<reverseString(str)<<endl;
+
+stack<int>s;
+
+s.push(3);
+s.push(2);
+s.push(1);
+printStack(s);//1, 2, 3
+reverse(s);
+printStack(s); //3,2,1
 
     return 0;
 }
